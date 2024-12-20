@@ -169,12 +169,16 @@ header.head{
     .row{
         border-radius: 50px;
 
-        & .special{
-        background-color: #262936;
-        }
         .card-body{
             
-            &:not(.special){
+            &:nth-of-type(2){
+                background-color: #262936;
+
+                header{
+                    background-color: #222531;
+                }
+            }
+            &:not(:nth-of-type(2)){
                 background-color: #323544;
             }
 
@@ -182,10 +186,6 @@ header.head{
             
             header{
                 background-color: #2D303D;
-                
-                &.special{
-                    background-color: #222531;
-                }
             }
             section{
     

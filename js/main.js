@@ -2,6 +2,10 @@ const btn = document.querySelector("button")
 const show = document.querySelector("#navbarNav")
 const form = document.querySelector("form")
 const search = document.querySelector("#search")
+const d = new Date();
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var box2=``;
 let contents ;
 
 
@@ -44,12 +48,9 @@ function clear(){
 
 
 function display(city , t , another){
-    const d = new Date();
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-
-    const cartona = `<div class="card-body col-lg-4">
+    let cartona="";
+    
+    const box1 = `<div class="card-body col-lg-4">
                 <header class="d-flex justify-content-between px-2 py-2">
                     <p class="m-0">${days[d.getDay()]}</p>
                     <p class="m-0"><span>${d.getDate()}</span>${months[d.getMonth()]}</p>
@@ -77,27 +78,25 @@ function display(city , t , another){
                 </div>
                 </section>
         </div>
-        <div class="card-body special col-lg-4 text-center">
-                <header class="special px-2 py-2">
-                    <p class="m-0">${days[d.getDay()+1]}</p>
-                </header>
-                <section class="px-3 pt-5">
-                        <figure><img src="${another[1].day.condition.icon}" alt="logo"></figure>
-                        <h3 class="fw-bolder text-white mt-2">${another[1].day.maxtemp_c}<sup>o</sup>C</h3>
-                        <p class="mb-2">${another[1].day.mintemp_c}<sup>o</sup></p>
-                        <figcaption>${another[1].day.condition.text}</figcaption>
-                </section>
-        </div>
-        <div class="card-body col-lg-4 text-center">
-                <header class="px-2 py-2">
-                    <p class="m-0">${days[d.getDay()+2]}</p>
-                </header>
-                <section class="px-3 pt-5">
-                        <figure><img src="${another[2].day.condition.icon}" alt="logo"></figure>
-                        <h3 class="fw-bolder text-white">${another[2].day.maxtemp_c}<sup>o</sup>C</h3>
-                        <p>${another[2].day.mintemp_c}<sup>o</sup></p>
-                        <figcaption>${another[2].day.condition.text}</figcaption>
-                </section>
-        </div>`
-    document.querySelector("#myData").innerHTML=cartona
+        `
+        for (let i = 1; i < another.length; i++) {
+            const Day = another[i].date
+            let newD = new Date(Day);
+
+            box2 +=`<div class="card-body special col-lg-4 text-center">
+            <header class="special px-2 py-2">
+                <p class="m-0">${days[newD.getDay()]}</p>
+            </header>
+            <section class="px-3 pt-5">
+                    <figure><img src="${another[i].day.condition.icon}" alt="logo"></figure>
+                    <h3 class="fw-bolder text-white mt-2">${another[i].day.maxtemp_c}<sup>o</sup>C</h3>
+                    <p class="mb-2">${another[i].day.mintemp_c}<sup>o</sup></p>
+                    <figcaption>${another[i].day.condition.text}</figcaption>
+            </section>
+            </div>
+            `
+            
+        }
+        cartona = box1+box2
+        document.querySelector("#myData").innerHTML=cartona
 }
