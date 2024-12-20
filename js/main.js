@@ -5,7 +5,6 @@ const search = document.querySelector("#search")
 const d = new Date();
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-var box2=``;
 let contents ;
 
 
@@ -49,6 +48,7 @@ function clear(){
 
 function display(city , t , another){
     let cartona="";
+    let box2=``;
     
     const box1 = `<div class="card-body col-lg-4">
                 <header class="d-flex justify-content-between px-2 py-2">
